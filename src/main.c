@@ -20,7 +20,7 @@ int main(int ac, char *av[]) {
     const t_test basicTests[] = {
         { ARGS("grep Hello", "wc -l"), DEFAULT_ENV, "Hello World!\n" },
         { ARGS("grep Hello", "wc -l"), DEFAULT_ENV, "Hello World!\nHello World!\nHello World!\nHello World!\nHello World!\n" },
-        { ARGS("grep Hello", "ls -la src/"), DEFAULT_ENV, "Hello World!\n" },
+        { ARGS("grep Hello", "ls -a src/"), DEFAULT_ENV, "Hello World!\n" },
         { ARGS("ls -la src/", "wc -l"), DEFAULT_ENV, "Hello World!\n" },
         { ARGS("grep Hello", "awk '{count++} END {print count}'"), DEFAULT_ENV, "Hello World!\nHello World!\n" },
         { ARGS("grep Hello", "awk \"{count++} END {print count}\""), DEFAULT_ENV, "Hello World!\nHello World!\n" },

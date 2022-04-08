@@ -15,23 +15,6 @@ ARG2="0"
 
 mkdir -p tmp/
 
-printf "$PURPLE$S1\n\n"
-echo "██████╗ ██╗██████╗ ███████╗██╗  ██╗    ███╗   ███╗███████╗██████╗ ██╗ ██████╗"
-echo "██╔══██╗██║██╔══██╗██╔════╝╚██╗██╔╝    ████╗ ████║██╔════╝██╔══██╗██║██╔════╝"
-echo "██████╔╝██║██████╔╝█████╗   ╚███╔╝     ██╔████╔██║█████╗  ██║  ██║██║██║     "
-echo "██╔═══╝ ██║██╔═══╝ ██╔══╝   ██╔██╗     ██║╚██╔╝██║██╔══╝  ██║  ██║██║██║     "
-echo "██║     ██║██║     ███████╗██╔╝ ██╗    ██║ ╚═╝ ██║███████╗██████╔╝██║╚██████╗"
-echo "╚═╝     ╚═╝╚═╝     ╚══════╝╚═╝  ╚═╝    ╚═╝     ╚═╝╚══════╝╚═════╝ ╚═╝ ╚═════╝"
-printf "\n$S1$RESET\n"
-
-if [[ -z $1 ]]; then
-    echo "pipexMedic: launch with basic, error, concurrency, or multiple_command,"
-    echo "            like this bash test.sh basics"
-    echo "            there are other aliases, as mandatory/m, bonus/b, all/a"
-	echo "            you can launch a specific test with a second argument"
-    exit 1
-fi
-
 if ! [[ -z $1 ]]; then
     for IN in ${INPUT[@]}; do
         if [[ $1 == $IN ]]; then

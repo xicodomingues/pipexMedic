@@ -98,16 +98,19 @@ void test(const char *testSubset, const size_t testIndex, char *const commandLis
     char*   bashArgs[] = { "bash", "-c", bashCommand, NULL };
 
     const time_t pipexStartTime = time(NULL);
+    for (int k = 0; pipexArgs[k]; k++)
+        printf("%s\n", pipexArgs[k]);
+
     executeCommand("../pipex", pipexArgs, envp, "./tmp/outputPipex.tmp", "./tmp/errorPipex.tmp");
     const int pipexStatus = getExitStatus();
     const time_t pipexTime = time(NULL) - pipexStartTime;
 
     const time_t bashStartTime = time(NULL);
-    executeCommand("/usr/bin/bash", bashArgs, envp, "./tmp/outputBash.tmp", "./tmp/errorBash.tmp");
+    executeCommand("/bin/bash", bashArgs, envp, "./tmp/outputBash.tmp", "./tmp/errorBash.tmp");
     const int bashStatus = getExitStatus();
     const time_t bashTime = time(NULL) - bashStartTime;
 
-    system("sed -i 's/bash/pipex/g' tmp/errorBash.tmp");
+    //system("sed -i 's/bash/pipex/g' tmp/errorBash.tmp");
 
     bashCommand[strlen(bashCommand) - 3 - 1] = '\0';
 
