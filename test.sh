@@ -35,20 +35,16 @@ if ! [[ -z $2 ]]; then
 fi
 
 printf "$BLUE"
-make -C ../ all
+make -s -C ../ all > /dev/null
 if [[ $? -ne 0 ]]; then
 	rm -rf tmp/; exit 1
 fi
 printf "$RESET"
-printf "$PURPLE$S1$RESET\n"
 
 clang -Wall -Wextra -Werror -fsanitize=address -I ./inc src/{main,test,runTest,utils}.c -o tester
 if [[ $? -ne 0 ]]; then
 	rm -rf tmp/; exit 1
-else
-	printf "$YELLOW""Tester ready!$RESET\n"
 fi
-printf "$PURPLE$S1$RESET\n"
 
 ./tester $ARG1 $ARG2
 

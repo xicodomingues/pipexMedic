@@ -20,8 +20,8 @@ int main(int ac, char *av[]) {
     const t_test basicTests[] = {
         { ARGS("grep Hello", "wc -l"), DEFAULT_ENV, "Hello World!\n" },
         { ARGS("grep Hello", "wc -l"), DEFAULT_ENV, "Hello World!\nHello World!\nHello World!\nHello World!\nHello World!\n" },
-        { ARGS("grep Hello", "ls -a src/"), DEFAULT_ENV, "Hello World!\n" },
-        { ARGS("ls -la src/", "wc -l"), DEFAULT_ENV, "Hello World!\n" },
+        { ARGS("grep Hello", "ls -l src/"), DEFAULT_ENV, "Hello World!\n" },
+        { ARGS("ls -l src/", "wc -l"), DEFAULT_ENV, "Hello World!\n" },
         { ARGS("grep Hello", "awk '{count++} END {print count}'"), DEFAULT_ENV, "Hello World!\nHello World!\n" },
         { ARGS("grep Hello", "awk \"{count++} END {print count}\""), DEFAULT_ENV, "Hello World!\nHello World!\n" },
         { ARGS("grep Hello", "awk '\"{count++} END {print count}\"'"), DEFAULT_ENV, "Hello World!\nHello World!\n" },
@@ -31,8 +31,8 @@ int main(int ac, char *av[]) {
     const t_test errorTests[] = {
         { ARGS("grep Hello", "wc -l"), DEFAULT_ENV, NULL },
         { ARGS("grep Hello", "wc -l"), NULL_ENV, "Hello World!\n" },
-        { ARGS("fizzBuzz", "ls -la src/"), DEFAULT_ENV, "Hello World!\n" },
-        { ARGS("ls -la src/", "buzzFizz"), DEFAULT_ENV, "Hello World!\n" },
+        { ARGS("fizzBuzz", "ls -l src/"), DEFAULT_ENV, "Hello World!\n" },
+        { ARGS("ls -l src/", "buzzFizz"), DEFAULT_ENV, "Hello World!\n" },
         { ARGS("fizzBuzz", "wc -l"), NULL_ENV, "Hello World!\n" },
         { ARGS("grep Hello", "buzzFizz"), NULL_ENV, "Hello World!\n" }
     };
@@ -42,7 +42,7 @@ int main(int ac, char *av[]) {
     };
 
     const t_test multiple_commandTests[] = {
-        { ARGS("ls -la src/", "grep .c", "wc -l"), DEFAULT_ENV, "Hello World!\n" },
+        { ARGS("ls -l src/", "grep .c", "wc -l"), DEFAULT_ENV, "Hello World!\n" },
         { ARGS("tr -d !", "grep -v !", "sed 's/Hello/Salut/g'"), DEFAULT_ENV, "Hello World!\nHello World!\nHello World!\nHello World!\nHello World!\n" },
         { ARGS("tr -d !", "grep -v !", "sed 's/Hello/Salut/g'", "grep Salut", "wc -l"), DEFAULT_ENV, "Hello World!\nHello World!\nHello World!\nHello World!\nHello World!\n" }
     };

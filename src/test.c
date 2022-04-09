@@ -98,8 +98,6 @@ void test(const char *testSubset, const size_t testIndex, char *const commandLis
     char*   bashArgs[] = { "bash", "-c", bashCommand, NULL };
 
     const time_t pipexStartTime = time(NULL);
-    for (int k = 0; pipexArgs[k]; k++)
-        printf("%s\n", pipexArgs[k]);
 
     executeCommand("../pipex", pipexArgs, envp, "./tmp/outputPipex.tmp", "./tmp/errorPipex.tmp");
     const int pipexStatus = getExitStatus();
@@ -110,7 +108,11 @@ void test(const char *testSubset, const size_t testIndex, char *const commandLis
     const int bashStatus = getExitStatus();
     const time_t bashTime = time(NULL) - bashStartTime;
 
-    //system("sed -i 's/bash/pipex/g' tmp/errorBash.tmp");
+#ifdef __APPLE__
+    system("sed -i '.bck' 's/bash/pipex/g' tmp/errorBash.tmp");
+#else
+    system("sed -i 's/bash/pipex/g' tmp/errorBash.tmp");
+#endif
 
     bashCommand[strlen(bashCommand) - 3 - 1] = '\0';
 
