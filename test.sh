@@ -34,13 +34,6 @@ if ! [[ -z $2 ]]; then
     ARG2=$2
 fi
 
-printf "$BLUE"
-make -s -C ../ all > /dev/null
-if [[ $? -ne 0 ]]; then
-	rm -rf tmp/; exit 1
-fi
-printf "$RESET"
-
 clang -Wall -Wextra -Werror -fsanitize=address -I ./inc src/{main,test,runTest,utils}.c -o tester
 if [[ $? -ne 0 ]]; then
 	rm -rf tmp/; exit 1
